@@ -6,9 +6,15 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v0.39.0/mapbox-gl.css' rel='stylesheet' />
     <!-- Style sheet -->
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Mapbox Draw tools -->
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.js'></script>
-    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.css' type='text/css'/>
+    <!-- Turf.js -->
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <!-- JQuery -->
+    <script src='http://code.jquery.com/jquery-3.2.1.min.js'></script>
+    <!-- Plotly for visualization-->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   </head>
 
   <body>
@@ -18,36 +24,35 @@
       <div id='submit' class='button button'>See results</div>
       <div id='results'></div>
     </div>
-      <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiYWtrYXJoIiwiYSI6ImNqMThjNHllMTA3MXczOHFzeXZza2hpbXkifQ.W-eBkYLcQLAoZCKLGWxDgQ';
-        var map = new mapboxgl.Map({
-          container: 'map',
-          style: 'mapbox://styles/mapbox/streets-v9',
-          center: [-122.333592, 47.605628],
-          zoom: 15, // Starts at Seattle by default
-        });
-        // Disable default box zooming
-        map.boxZoom.disable();
-      </script>
 
-      <div class='map-overlay top'>
-        <div class=map-overlay-inner>
-          <h2>SPD Incident Reports By Year</h2>
-          <label id='year'></label>
-          <input id='slider' type='range' min='2010' max='2017' step='1' value='2017'/>
-        </div>
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoiYWtrYXJoIiwiYSI6ImNqMThjNHllMTA3MXczOHFzeXZza2hpbXkifQ.W-eBkYLcQLAoZCKLGWxDgQ';
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [-122.333592, 47.605628],
+        zoom: 15, // Starts at Seattle by default
+      });
+      // Disable default box zooming
+      map.boxZoom.disable();
+    </script>
+
+    <div class='map-overlay top'>
+      <div class=map-overlay-inner>
+        <h2>SPD Incident Reports By Year</h2>
+        <label id='year'></label>
+        <input id='slider' type='range' min='2010' max='2017' step='1' value='2017'/>
       </div>
+    </div>
 
-      <div class="search">
-        <input type="text" class="searchTerm" placeholder="Offense Type">
-        <!-- <button type="submit" class="searchButton"> -->
-          <i class="fa fa-search"></i>
-        </button>
-      </div>
-
-      <!-- From GeoJson Library-->
-      <script type="text/javascript" src="GeoJSON/geojson.min.js"></script>
-      <script src="script.js"></script>
+    <div class="chart-layout">
+      <div id='chart'></div>
+      <input id='close' type='image' src='./error.png' alt="Close"/>
+    </div>
+    <!-- From GeoJson Library-->
+    <script type="text/javascript" src="GeoJSON/geojson.min.js"></script>
+    <!-- My js code -->
+    <script src="script.js"></script>
 
 
   </body>
